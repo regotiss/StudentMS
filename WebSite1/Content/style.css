@@ -1,0 +1,19 @@
+﻿body {
+    padding-top: 50px;
+  
+}
+.show
+{
+    font-size: 25px;
+    padding : 10px;
+    margin-top : 10px;
+    border:1px solid black;
+    border-radius: 10px;
+}
+.panel1
+{
+    background-color:#eee;
+    margin-bottom:70px;
+    margin-top:30px;
+    border:1px solid black;
+}

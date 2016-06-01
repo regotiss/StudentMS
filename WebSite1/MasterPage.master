@@ -1,0 +1,146 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/style.css" rel="stylesheet" />
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    
+    <form id="form1" runat="server">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">WCE,Sangli</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav navbar-right">
+            
+            <% try{  %>
+            <li><a href="Home.aspx">Home</a></li>
+              
+            <% if(Session["username"] != null) {
+                    String role =  Session["role"].ToString();
+                   %>
+                <% if(role.Equals("admin")){ %>
+                <!-- Branch -->
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Branch <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="Branch.aspx">Show </a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="AddBranch.aspx">Add </a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="DeleteBranch.aspx">Delete</a></li>
+                    <li role="separator" class="divider"></li>
+                  </ul>
+                </li>
+
+                <!-- Courses -->
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Course <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="Course.aspx">Show </a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="AddCourse.aspx">Add </a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="#">Update </a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="#">Delete</a></li>
+                  </ul>
+                </li>
+
+                <!-- Student -->
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Student <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="Student.aspx">Show </a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="AddStudent.aspx">Add </a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="#">Update </a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="DeleteStudent.aspx">Delete</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="AddStudentCourse.aspx">Assign Course</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="StudentCourses.aspx">View Student Courses</a></li>
+                  </ul>
+                </li>
+
+                <!-- Teacher -->
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Teacher <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="Teacher.aspx">Show </a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="AddTeacher.aspx">Add </a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="#">Update </a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="#">Delete</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="AddTeacherCourse.aspx">Assign Course</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="TeacherCourses.aspx">View Teacher Courses</a></li>
+                  </ul>
+                </li>
+
+               
+                <%} else if(role.Equals("teacher")) {%>
+                    <li><a href="Student.aspx">View Students</a></li>
+                    <li><a href="Teacher.aspx">View Teachers</a></li>
+                    <li><a href="Message.aspx">Send Message</a></li>
+            
+                    <li><a href="SentMessages.aspx">View Message</a></li>
+                <% }else{ %>
+                    <li><a href="#">Profile</a></li>
+                    <li><a href="Notifications.aspx">Notifications</a></li>
+                    
+                <% } %>
+                 <li>
+                    <div class="text-center">
+                        <asp:Button ID="SubmitBtn" style="margin-top:10px" type="submit" runat="server" OnClick="Button1_Click" Text="Logout" class="btn btn-success"/>   
+                    </div>
+                </li>
+            <%} else { %>
+            <li><a href="Login.aspx">Log In</a></li>
+            <%  }
+               }
+               catch(Exception e){
+                
+               }   
+            %>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container-fluid">
+
+         <div>
+                <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+                </asp:ContentPlaceHolder>
+          </div>
+
+    </div>  
+    </form>
+
+
+    <script src="Content/jquery.js"></script>
+    <script src="Content/bootstrap.min.js"></script>
+</body>
+</html>
+
+           
